@@ -20,7 +20,11 @@ class ViewTests(unittest.TestCase):
 class FunctionalTests(unittest.TestCase):
     def setUp(self):
         from bundling_example import main
-        app = main({})
+        additional_settings = {
+            'statics.dir':'statics',
+            'statics.build_dir':'static_build'
+        }
+        app = main({}, **additional_settings)
         from webtest import TestApp
         self.testapp = TestApp(app)
 
